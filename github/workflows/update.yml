@@ -1,0 +1,43 @@
+name: Egloos RSS Auto Update Bot
+
+# 2시간 간격으로 로봇 비서를 깨우는 스케줄 설정
+on:
+  schedule:
+    # '0 */2 * * *' 수식은 전 세계 표준시(UTC) 기준으로 2시간마다 (0시, 2시, 4시...) 정각에 실행됩니다.
+    # 한국 시간 기준과 상관없이 언제나 정확히 2시간 간격 순찰 궤도를 유지합니다.
+    - cron: '0 */2 * * *'
+  # 수동 수집용 버튼 활성화
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. 저장소의 파이썬 코드 소환
+    - name: Check out repository code
+      uses: actions/checkout@v4
+
+    # 2. 파이썬 가상 환경 구축
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    # 3. 크롤링 필수 패키지 설치
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests beautifulsoup4
+
+    # 4. 파이썬 스크립트 가동 (이전 단계에서 만드신 파이썬 파일명과 일치해야 합니다)
+    - name: Run Egloos Scraper
+      run: python updater.py
+
+    # 5. 2시간마다 새로 갱신된 파일 저장소에 반영 후 밀어넣기(Push)
+    - name: Commit and Push Updated RSS
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add egloos_feed.xml
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Automated RSS update every 2 hours" && git push)
