@@ -5,6 +5,12 @@
     <link>https://egloos.com/kor</link>
     <description>YAML 파일 내부 인라인 스크립트로 2시간마다 자동 갱신되는 피드입니다.</description>
     <item>
+      <title>하이닉스 ADR 수수께끼의 대폭락</title>
+      <link>https://egloos.com/dante_kim/19692</link>
+      <description>하이닉스 ADR의 급락은 단일한 결정적 악재보다 시장 전체의 비정상적 변동성과 메모리 업종. ..</description>
+      <pubDate>2026.07.16 06:05:23</pubDate>
+    </item>
+    <item>
       <title>"소금을 뿌리고 감자로 문질러보세요" 자주 눌러붙고 기름때가 잘 생기는 후라이팬 청소 방법</title>
       <link>https://egloos.com/newskrw/19691</link>
       <description>프라이팬 바닥에 뭔가 시커멓게 눌어붙으면 이제 버릴 때가 됐나 싶어진다. 그런데 그 검은 . ..</description>
@@ -69,12 +75,6 @@
       <link>https://egloos.com/newskrw/19659</link>
       <description>올해 처음으로 수확이 시작된 과일이 있다. 바로, 부드러운 식가과 은은한 단맛으로 예로부터. ..</description>
       <pubDate>2026.07.15 16:10:06</pubDate>
-    </item>
-    <item>
-      <title>“열렸다 하면 예약마감?” 숲과 계곡이 있는 서울 근교 가족 국립자연휴양림 추천</title>
-      <link>https://egloos.com/informaticsview/19658</link>
-      <description>여름 휴가철마다 온라인상에서 안보이는 전쟁이 시작되는 곳이 있죠. 숲과 계곡 속에 풍덩 빠. ..</description>
-      <pubDate>2026.07.15 16:10:05</pubDate>
     </item>
   </channel>
 </rss>
