@@ -30,13 +30,16 @@ jobs:
 
     # 질문자님의 Playwright 기반 main.py 실행
     - name: Run Egloos Scraper
-      run: python main.py
-
+      run: python main.py    
+      
     # 생성된 RSS XML 파일 커밋 및 푸시
-    # (코드에서 출력 파일명을 egloos_feed.xml로 지정하셨으므로 해당 파일명을 등록합니다)
     - name: Commit and Push Updated RSS
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git add egloos_feed.xml
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Automated RSS update via Playwright" && git push)
+        
+        # 저장소에 있는 실제 파일명(egloos_feedv2.xml) 또는 모든 xml 등록
+        git add *.xml
+        
+        # 변경 사항이 있을 때만 커밋 및 푸시 (에러 방지)
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Automated RSS update" && git push)
