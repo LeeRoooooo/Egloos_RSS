@@ -1,8 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
   <channel>
-    <title>이글루스 종합 건강 및 정보 피드</title>
+    <title>이글루스 최신 포스트 피드</title>
     <link>https://egloos.com/posts</link>
-    <description>YAML 파일 내부 인라인 스크립트로 2시간마다 자동 갱신되는 피드입니다.</description>
+    <description>실시간 업로드 시간 동기화 피드</description>
+    <item>
+      <title>[더카뷰] "10분만 두면 하얀 자국이 녹아 떨어집니다" 전기포트 물때에 마시다 남은 '이것' 부어보세요</title>
+      <link>https://egloos.com/thecarview/26459</link>
+      <description>전기포트 뚜껑을 열고 안을 들여다보면 바닥에 하얀 자국이 얇게 깔려 있는 것을 보게 된다. .. .</description>
+      <pubDate>2026.10.10 15:10:00</pubDate>
+    </item>
+    <item>
+      <title>[더카뷰] "이게 절약이지, 절약이 어려운 게 아닙니다" 실리콘 주걱 변색, '이것' 반반 섞어 담가보세요</title>
+      <link>https://egloos.com/thecarview/26455</link>
+      <description>김치를 볶거나 고추장 양념을 버무린 뒤 설거지를 마치고 주걱을 꺼내 보면, 흰색이나 연한 . ..</description>
+      <pubDate>2026.10.10 14:10:09</pubDate>
+    </item>
+    <item>
+      <title>[인포매틱스뷰] 휴게소 맛집 순위, 소떡소떡만 먹었다면 손해…도로공사가 뽑은 4곳</title>
+      <link>https://egloos.com/informaticsview/26456</link>
+      <description>고속도로에서 배고프면 선택은 늘 비슷합니다. 우동 한 그릇, 돈가스 아니면 소떡소떡. 그런. ..</description>
+      <pubDate>2026.10.10 14:10:12</pubDate>
+    </item>
+    <item>
+      <title>[뉴스클립] "욕실 수납장 선반 안쪽, 손 넣어 '이것'부터 확인해보세요"…화장실 냄새의 출처가 여기 있습니다</title>
+      <link>https://egloos.com/newskrw/26457</link>
+      <description>10월에 들어서면서 아침저녁 공기가 선선해졌다. 욕실 수납장은 문을 닫아 두니 안에 있는 . ..</description>
+      <pubDate>2026.10.10 14:40:07</pubDate>
+    </item>
+    <item>
+      <title>[여행타임즈] "설탕 버리는 일이 없어집니다"…돌처럼 굳은 설탕통에 식빵 한 조각만 '이렇게' 넣어보세요</title>
+      <link>https://egloos.com/traveltimesnews/26458</link>
+      <description>설탕통 뚜껑을 열었는데 안에 든 설탕이 한 덩어리로 굳어 숟가락이 들어가지 않는 일이 있다. ..</description>
+      <pubDate>2026.10.10 14:40:12</pubDate>
+    </item>
+    <item>
+      <title>[더카뷰] "별거 아닌 것 같아도 신발 오래 신는 방법입니다" 아끼는 운동화 일수록 신발장에 모셔두면 안됩니다</title>
+      <link>https://egloos.com/thecarview/26453</link>
+      <description>날이 선선해져 신발장을 열고 여름 신발을 넣다 보면, 몇 년째 안쪽 깊숙이 넣어 둔 운동화. ..</description>
+      <pubDate>2026.10.10 13:10:04</pubDate>
+    </item>
+    <item>
+      <title>[여행타임즈] "노란 은행나무 터널이 3주만 열리는 산길이라니"... 관람료도 안 받는 천년 고찰 단풍 명소</title>
+      <link>https://egloos.com/traveltimesnews/26454</link>
+      <description>경상북도 영주시 부석면 부석사는 일주문에서 천왕문까지 800m가 은행나무로 이어진다. 길 . ..</description>
+      <pubDate>2026.10.10 13:40:08</pubDate>
+    </item>
+    <item>
+      <title>[더카뷰] "세탁소 사장님이 알려준 방법입니다" 패딩 빨래 후 옷걸이 사용하지 말고 '이렇게' 말려보세요</title>
+      <link>https://egloos.com/thecarview/26450</link>
+      <description>10월에 들어서면서 아침저녁 바람이 차가워지면 옷장 깊숙이 넣어 두었던 얇은 패딩을 꺼내게. ..</description>
+      <pubDate>2026.10.10 12:10:02</pubDate>
+    </item>
+    <item>
+      <title>[여행타임즈] "카레가 밋밋하다면 '이것' 한 스푼 넣어보세요"…식당 카레처럼 색도 맛도 진해집니다</title>
+      <link>https://egloos.com/traveltimesnews/26451</link>
+      <description>집에서 끓인 카레는 레시피대로 했는데도 어딘가 심심할 때가 있다. 감자와 당근은 알맞게 익. ..</description>
+      <pubDate>2026.10.10 12:40:08</pubDate>
+    </item>
+    <item>
+      <title>[뉴스클립] "불고기 양념, 비싼 배 갈아 넣지 마세요"…'이 간장'만 넣으면 맛이 깊어집니다</title>
+      <link>https://egloos.com/newskrw/26452</link>
+      <description>불고기용 소고기를 사 와서 양념을 만들려고 하면 배가 없어서 멈칫하는 경우가 많다. 불고기. ..</description>
+      <pubDate>2026.10.10 12:40:10</pubDate>
+    </item>
   </channel>
 </rss>
