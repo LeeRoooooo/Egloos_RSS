@@ -1,132 +1,38 @@
-name: Egloos RSS Auto Update Bot (All-in-One)
+name: Egloos RSS Auto Update Bot
 
-# 2시간 간격 정기 순찰 스케줄 설정
 on:
   schedule:
-    - cron: '0 */2 * * *' # 2시간마다 정각에 무인 로봇 비서 가동
-  workflow_dispatch:      # 수동 실행 버튼
+    - cron: '0 */2 * * *'
+  workflow_dispatch:
 
 permissions:
-  contents: write         # 깃허브 저장소 푸시 권한 명시
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. 저장소 체크아웃
     - name: Check out repository
       uses: actions/checkout@v4
 
-    # 2. 파이썬 환경 세팅
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.10'
 
-    # 3. 크롤링 필수 패키지 설치
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install requests
 
-    # 4. [핵심 수정] 개편된 Next.js 스트리밍 JSON을 파싱하는 초고속 인라인 스크립트
-    - name: Run Inline Egloos Scraper
-      shell: python
-      run: |
-        import xml.etree.ElementTree as ET
-        from datetime import datetime
-        import json
-        import re
-        import requests
-        from urllib.parse import urljoin
-        import urllib3
+    # [핵심] 외부 main.py 파일을 직접 실행
+    - name: Run Egloos Scraper
+      run: python main.py
 
-        # SSL 경고 숨기기
-        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-        target_url = "https://egloos.com/posts"
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
-        }
-
-        try:
-            response = requests.get(target_url, headers=headers, verify=False, timeout=15)
-            response.raise_for_status()
-        except Exception as e:
-            print(f"웹사이트 연결 실패: {e}")
-            exit(0)
-
-        # 개편된 이글루스 소스 내부의 initialPosts JSON 데이터 추출
-        match = re.search(r'\{"initialPosts":\{"contents":(\[.*?\]),"totalCount"', response.text)
-        if not match:
-            print("[오류] 게시글 JSON 데이터를 찾을 수 없습니다.")
-            exit(0)
-
-        posts = json.loads(match.group(1))
-
-        # RSS 기본 골격 생성
-        rss = ET.Element("rss", version="2.0")
-        channel = ET.SubElement(rss, "channel")
-        ET.SubElement(channel, "title").text = "이글루스 종합 건강 및 정보 피드"
-        ET.SubElement(channel, "link").text = target_url
-        ET.SubElement(channel, "description").text = "YAML 파일 내부 인라인 스크립트로 2시간마다 자동 갱신되는 피드입니다."
-
-        items_processed = 0
-
-        for p in posts:
-            try:
-                title = p.get("title", "").strip()
-                if not title:
-                    continue
-
-                blog_domain = p.get("blogDomain", "")
-                post_id = p.get("id", "")
-                full_link = f"https://egloos.com/{blog_domain}/{post_id}"
-                description = p.get("body", "") or title
-                nickname = p.get("nickname", "")
-
-                # 썸네일 파일명 속 14자리 시간 우선 추출 (예: 20261010141009)
-                thumb_url = p.get("thumbnailUrl", "")
-                time_match = re.search(r'(\d{14})', thumb_url)
-
-                if time_match:
-                    dt = datetime.strptime(time_match.group(1), "%Y%m%d%H%M%S")
-                    pub_date = dt.strftime("%Y.%m.%d %H:%M:%S")
-                else:
-                    raw_date = p.get("createdAt", "")
-                    if raw_date:
-                        clean_iso = raw_date.replace("Z", "").split(".")[0]
-                        dt = datetime.strptime(clean_iso, "%Y-%m-%dT%H:%M:%S")
-                        pub_date = dt.strftime("%Y.%m.%d %H:%M:%S")
-                    else:
-                        pub_date = datetime.now().strftime("%Y.%m.%d %H:%M:%S")
-
-                # RSS 아이템 등록
-                rss_item = ET.SubElement(channel, "item")
-                ET.SubElement(rss_item, "title").text = f"[{nickname}] {title}" if nickname else title
-                ET.SubElement(rss_item, "link").text = full_link
-                ET.SubElement(rss_item, "description").text = description
-                ET.SubElement(rss_item, "pubDate").text = pub_date
-
-                items_processed += 1
-            except Exception:
-                continue
-
-        # XML 들여쓰기 및 파일 저장
-        ET.indent(rss, space="  ", level=0)
-        xml_str = ET.tostring(rss, encoding="utf-8", method="xml").decode("utf-8")
-        final_rss = '<?xml version="1.0" encoding="UTF-8" ?>\n' + xml_str
-
-        with open("egloos_feedv2.xml", "w", encoding="utf-8") as f:
-            f.write(final_rss)
-
-        print(f"인라인 파이썬 크롤링 완료: 총 {items_processed}개 아이템 생성됨.")
-
-    # 5. 갱신된 파일 커밋 및 푸시
     - name: Commit and Push Updated RSS
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git add egloos_feedv2.xml
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Automated RSS inline update every 2 hours" && git push)
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Automated RSS update via main.py" && git push)
