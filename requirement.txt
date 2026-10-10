@@ -1,4 +1,4 @@
 xml.etree
 datetime
-BeautifulSoup
+playwright
 urllib3
