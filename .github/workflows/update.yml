@@ -21,18 +21,22 @@ jobs:
       with:
         python-version: '3.10'
 
+    # [핵심 수정] Playwright 및 브라우저 의존성 패키지 설치
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install requests
+        pip install playwright
+        playwright install --with-deps chromium
 
-    # [핵심] 외부 main.py 파일을 직접 실행
+    # 질문자님의 Playwright 기반 main.py 실행
     - name: Run Egloos Scraper
       run: python main.py
 
+    # 생성된 RSS XML 파일 커밋 및 푸시
+    # (코드에서 출력 파일명을 egloos_feed.xml로 지정하셨으므로 해당 파일명을 등록합니다)
     - name: Commit and Push Updated RSS
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git add egloos_feedv2.xml
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Automated RSS update via main.py" && git push)
+        git add egloos_feed.xml
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Automated RSS update via Playwright" && git push)
