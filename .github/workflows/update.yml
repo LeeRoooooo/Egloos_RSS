@@ -111,11 +111,11 @@ jobs:
         xml_str = ET.tostring(rss, encoding="utf-8", method="xml").decode("utf-8")
         final_rss = '<?xml version="1.0" encoding="UTF-8" ?>\n' + xml_str
 
-        with open("egloos_feed.xml", "w", encoding="utf-8") as f:
+        with open("egloos_feedv2.xml", "w", encoding="utf-8") as f:
             f.write(final_rss)
         print("인라인 파이썬 크롤링 및 XML 빌드 완료!")
 
-    # 5. 갱신된 'egloos_feed.xml' 파일을 저장소에 자동으로 밀어넣고(Push) 로봇 비서 퇴근
+    # 5. 갱신된 'egloos_feedv2.xml' 파일을 저장소에 자동으로 밀어넣고(Push) 로봇 비서 퇴근
     - name: Commit and Push Updated RSS
       run: |
         git config --global user.name "github-actions[bot]"
